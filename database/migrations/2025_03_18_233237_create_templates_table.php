@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Template;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('records', function (Blueprint $table) {
+        Schema::create('templates', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Template::class);
+            $table->string('name');
+            $table->json('description')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('records');
+        Schema::dropIfExists('templates');
     }
 };
