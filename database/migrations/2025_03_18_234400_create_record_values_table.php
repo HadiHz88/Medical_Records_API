@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\Template;
+use App\Models\Record;
+use App\Models\TemplateField;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,9 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('records', function (Blueprint $table) {
+        Schema::create('record_values', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Template::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Record::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(TemplateField::class)->constrained()->cascadeOnDelete();
+            $table->text('value');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('records');
+        Schema::dropIfExists('record_values');
     }
 };
