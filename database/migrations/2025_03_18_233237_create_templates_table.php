@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('records', function (Blueprint $table) {
-            $table->id(); // record id
-            $table->json('data'); // record data, stored as JSON (e.g. {"name": "John", "age": 30})
-            // foreign id for the template type
-            $table->timestamps(); // created_at and updated_at columns
+        Schema::create('templates', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->json('description')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('records');
+        Schema::dropIfExists('templates');
     }
 };
