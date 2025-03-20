@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>React inside Laravel</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laravel + Inertia</title>
+    @vite('resources/js/app.tsx')
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet"/>
+
+
     @viteReactRefresh
-    @vite('resources/js/app.jsx') <!-- This will load your React JS code -->
-    @vite('resources/css/app.css')
+    @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
+    @inertiaHead
 </head>
 <body>
-    <div id="app"></div> <!-- React will mount here -->
+<body class="font-sans antialiased">
+@inertia
+</body>
 </body>
 </html>
